@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Grocery Store</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Grocery Store</h1>
+    </header>
+    <section>
+        <table id="productTable">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Product rows will be inserted here by JavaScript -->
+            </tbody>
+        </table>
+    </section>
+    <footer>
+        <p>Contact us at (123) 456-7890</p>
+    </footer>
+    <script src="products.js"></script>
+</body>
+</html>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+header, footer {
+    background-color: #f8f8f8;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+table {
+    margin: auto;
+    width: 80%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+img {
+    max-width: 100px;
+    height: auto;
+}
+// Array of products
+const products = [
+    { name: 'Apple', price: '$1.00 each', image: 'apple.jpg' },
+    { name: 'Banana', price: '$0.50 each', image: 'banana.jpg' },
+    // Add more products here
+];
+
+// Function to render products in a table
+function renderProducts() {
+    const tableBody = document.querySelector('#productTable tbody');
+    tableBody.innerHTML = ''; // Clear existing rows
+
+    products.forEach(product => {
+        const row = document.createElement('tr');
+        
+        const imgCell = document.createElement('td');
+        const img = document.createElement('img');
+        img.src = product.image;
+        img.alt = product.name;
+        imgCell.appendChild(img);
+        
+        const nameCell = document.createElement('td');
+        nameCell.textContent = product.name;
+        
+        const priceCell = document.createElement('td');
+        priceCell.textContent = product.price;
+        
+        row.appendChild(imgCell);
+        row.appendChild(nameCell);
+        row.appendChild(priceCell);
+        
+        tableBody.appendChild(row);
+    });
+}
+
+// Initial render
+renderProducts();
